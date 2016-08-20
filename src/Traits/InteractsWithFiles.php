@@ -9,7 +9,7 @@ trait InteractsWithFiles
     private function loadDataFile($filename)
     {
         return new Collection(
-            $this->parseFile(__DIR__ . '/../../data/' . $filename)
+            $this->parseFile(__DIR__.'/../../data/'.$filename)
         );
     }
 
@@ -17,6 +17,7 @@ trait InteractsWithFiles
      * Parse a JSON file.
      *
      * @param $file
+     *
      * @return mixed
      */
     private function parseFile($file)

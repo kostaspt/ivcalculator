@@ -25,14 +25,15 @@ class IVCalculator
      * @param $hp
      * @param $dustCost
      * @param bool $neverUpgraded
+     *
      * @return Collection
      */
     public function evaluate($pokemonNameOrId, $cp, $hp, $dustCost, $neverUpgraded = false)
     {
-        $pokemon = (new Pokedex)->tryToFind($pokemonNameOrId);
+        $pokemon = (new Pokedex())->tryToFind($pokemonNameOrId);
 
         $possibleIVs = $this->getPossibleIVs($pokemon, $cp, $hp, $dustCost, $neverUpgraded)
-            ->map(function($potentialIV) {
+            ->map(function ($potentialIV) {
                 $potentialIV->perfection = $this->calculatePerfection($potentialIV);
 
                 return $potentialIV;
@@ -48,6 +49,7 @@ class IVCalculator
      * @param $hp
      * @param $dustCost
      * @param bool $neverUpgraded
+     *
      * @return Collection
      */
     private function getPossibleIVs($pokemon, $cp, $hp, $dustCost, $neverUpgraded = false)
@@ -62,6 +64,7 @@ class IVCalculator
     /**
      * @param $dustCost
      * @param $neverUpgraded
+     *
      * @return Collection
      */
     private function getPotentialLevels($dustCost, $neverUpgraded)
@@ -83,6 +86,7 @@ class IVCalculator
      * @param Collection $potentialLevels
      * @param $pokemon
      * @param $hp
+     *
      * @return Collection
      */
     private function getPotentialHPIVs(Collection $potentialLevels, $pokemon, $hp)
@@ -95,7 +99,7 @@ class IVCalculator
                     if ($this->testHP($pokemon, $hp, $staminaIV, $levelData)) {
                         $potentialHPIVs->push((object) [
                             'levelData' => $levelData,
-                            'iv'        => $staminaIV
+                            'iv'        => $staminaIV,
                         ]);
                     }
                 });
@@ -108,11 +112,12 @@ class IVCalculator
      * @param $potentialHPIVs
      * @param $pokemon
      * @param $cp
+     *
      * @return Collection
      */
     private function getPotentialIVs($potentialHPIVs, $pokemon, $cp)
     {
-        $potentialIVs = new Collection;
+        $potentialIVs = new Collection();
 
         $potentialHPIVs->each(function ($potentialHPIV) use (&$potentialIVs, $pokemon, $cp) {
             $levelData = $potentialHPIV->levelData;
@@ -143,6 +148,7 @@ class IVCalculator
      * @param $hp
      * @param $iv
      * @param $levelData
+     *
      * @return bool
      */
     private function testHP($pokemon, $hp, $iv, $levelData)
@@ -157,6 +163,7 @@ class IVCalculator
      * @param $defenseIV
      * @param $staminaIV
      * @param $levelData
+     *
      * @return bool
      */
     private function testCP($pokemon, $cp, $attackIV, $defenseIV, $staminaIV, $levelData)
@@ -171,12 +178,13 @@ class IVCalculator
 
     /**
      * @param $potentialIV
+     *
      * @return float
      */
     private function calculatePerfection($potentialIV)
     {
         $perfection = ($potentialIV->attackIV + $potentialIV->defenseIV + $potentialIV->staminaIV) / 45;
 
-	    return floor($perfection * 100) / 100;
+        return floor($perfection * 100) / 100;
     }
 }

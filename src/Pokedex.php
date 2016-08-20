@@ -24,6 +24,7 @@ class Pokedex
      * Search by name and ID for pokemon.
      *
      * @param $needle
+     *
      * @return mixed
      */
     public function tryToFind($needle)
@@ -35,14 +36,13 @@ class Pokedex
         if ($pokemon = $this->getById($needle)) {
             return $pokemon;
         }
-
-        return null;
     }
 
     /**
      * Get pokemon by name.
      *
      * @param $id
+     *
      * @return mixed
      */
     public function getById($id)
@@ -54,6 +54,7 @@ class Pokedex
      * Get pokemon by name.
      *
      * @param $name
+     *
      * @return mixed
      */
     public function getByName($name)
@@ -66,13 +67,15 @@ class Pokedex
      *
      * @param $key
      * @param $value
-     * @return mixed
+     *
      * @throws BadFunctionCallException
+     *
+     * @return mixed
      */
     private function getBy($key, $value)
     {
-        if (! in_array($key, ['id', 'name', 'stamina', 'attack', 'defense'])) {
-            throw new BadFunctionCallException;
+        if (!in_array($key, ['id', 'name', 'stamina', 'attack', 'defense'])) {
+            throw new BadFunctionCallException();
         }
 
         $pokemon = $this->pokemonData->where($key, $value)->first();

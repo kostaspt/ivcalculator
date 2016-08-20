@@ -61,4 +61,4 @@ var_dump($ivs->toArray());
 
 ## Credit
 
-Heavily inspired by (pokemon-go-iv-calculator)[https://github.com/andromedado/pokemon-go-iv-calculator]
+Heavily inspired by [andromedado/pokemon-go-iv-calculator](https://github.com/andromedado/pokemon-go-iv-calculator)

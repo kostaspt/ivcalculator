@@ -20,15 +20,17 @@ class IVCalculator
     }
 
     /**
-     * @param $pokemon
+     * @param $pokemonNameOrId
      * @param $cp
      * @param $hp
      * @param $dustCost
      * @param bool $neverUpgraded
      * @return Collection
      */
-    public function evaluate($pokemon, $cp, $hp, $dustCost, $neverUpgraded = false)
+    public function evaluate($pokemonNameOrId, $cp, $hp, $dustCost, $neverUpgraded = false)
     {
+        $pokemon = (new Pokedex)->tryToFind($pokemonNameOrId);
+
         $possibleIVs = $this->getPossibleIVs($pokemon, $cp, $hp, $dustCost, $neverUpgraded)
             ->map(function($potentialIV) {
                 $potentialIV->perfection = $this->calculatePerfection($potentialIV);

@@ -1,0 +1,22 @@
+{
+    "name": "kostaspt/ivcalculator",
+    "authors": [
+        {
+            "name": "Konstantinos Pittas",
+            "email": "konstantinos.pittas@gmail.com"
+        }
+    ],
+    "require": {
+        "tightenco/collect": "^5.2"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^5.5",
+        "larapack/dd": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "IVCalculator\\": "src/"
+        }
+    },
+    "minimum-stability": "stable"
+}

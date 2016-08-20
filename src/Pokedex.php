@@ -17,9 +17,7 @@ class Pokedex
 
     public function __construct()
     {
-        $this->pokemonData = new Collection(
-            $this->parseFile(__DIR__ . '/data/pokemon.json')
-        );
+        $this->pokemonData = $this->loadDataFile('pokemon.json');
     }
 
     /**

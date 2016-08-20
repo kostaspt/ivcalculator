@@ -2,8 +2,17 @@
 
 namespace IVCalculator\Traits;
 
+use Illuminate\Support\Collection;
+
 trait InteractsWithFiles
 {
+    private function loadDataFile($filename)
+    {
+        return new Collection(
+            $this->parseFile(__DIR__ . '/../../data/' . $filename)
+        );
+    }
+
     /**
      * Parse a JSON file.
      *

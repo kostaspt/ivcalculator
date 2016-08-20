@@ -16,9 +16,7 @@ class IVCalculator
 
     public function __construct()
     {
-        $this->levelUpData = new Collection(
-            $this->parseFile(__DIR__ . '/data/level_up.json')
-        );
+        $this->levelUpData = $this->loadDataFile('level_up.json');
     }
 
     /**

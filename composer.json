@@ -1,5 +1,8 @@
 {
     "name": "kostaspt/ivcalculator",
+    "description": "Find the possible IVs of a Pokémon.",
+    "keywords": ["pokemon", "pokemon go", "iv", "iv calculator", "pokemon go iv"],
+    "license": "MIT",
     "authors": [
         {
             "name": "Konstantinos Pittas",

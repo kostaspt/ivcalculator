@@ -1,6 +1,10 @@
 # IV Calculator
 
-![](https://img.shields.io/codeship/76c62ad0-4942-0134-a5b9-16ec256c4313.svg)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/kostaspt/ivcalculator.svg?style=flat-square)](https://packagist.org/packages/kostaspt/ivcalculator)
+[![Build Status](https://img.shields.io/travis/kostaspt/ivcalculator/master.svg?style=flat-square)](https://travis-ci.org/kostaspt/ivcalculator)
+[![StyleCI](https://styleci.io/repos/66166238/shield)](https://styleci.io/repos/66166238)
+[![SensioLabsInsight](https://img.shields.io/sensiolabs/i/32b1d984-212c-48cd-b18a-f6254bc47062.svg?style=flat-square)](https://insight.sensiolabs.com/projects/32b1d984-212c-48cd-b18a-f6254bc47062)
+[![Quality Score](https://img.shields.io/scrutinizer/g/kostaspt/ivcalculator.svg?style=flat-square)](https://scrutinizer-ci.com/g/kostaspt/ivcalculator)
 
 Find the possible IVs of a Pokémon.
 

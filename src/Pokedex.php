@@ -27,6 +27,8 @@ class Pokedex
      *
      * @param $needle
      *
+     * @throws PokemonNotFound
+     *
      * @return Pokemon
      */
     public function tryToFind($needle)
@@ -46,6 +48,8 @@ class Pokedex
         } catch (PokemonNotFound $e) {
             // Do nothing
         }
+
+        throw new PokemonNotFound();
     }
 
     /**

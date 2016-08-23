@@ -99,8 +99,8 @@ class Evaluator
 
                     $this->potentialHPIVs->push($hpiv);
                 }
-            };
-        };
+            }
+        }
 
         return $this;
     }
@@ -121,16 +121,16 @@ class Evaluator
 
                         $this->potentialIVs->push($iv);
                     }
-                };
-            };
-        };
+                }
+            }
+        }
 
         return $this;
     }
 
     /**
      * @param Pokemon $pokemon
-     * @param Level $level
+     * @param Level   $level
      * @param $cp
      * @param $attackIV
      * @param $defenseIV
@@ -150,7 +150,7 @@ class Evaluator
 
     /**
      * @param Pokemon $pokemon
-     * @param Level $level
+     * @param Level   $level
      * @param $hp
      * @param $staminaIV
      *

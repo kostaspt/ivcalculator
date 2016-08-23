@@ -84,7 +84,7 @@ class Pokedex
      */
     private function getBy($key, $value)
     {
-        if (! in_array($key, ['id', 'name', 'stamina', 'attack', 'defense'])) {
+        if (!in_array($key, ['id', 'name', 'stamina', 'attack', 'defense'])) {
             throw new BadFunctionCallException();
         }
 

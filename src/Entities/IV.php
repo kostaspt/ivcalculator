@@ -35,6 +35,6 @@ class IV
         $this->defenseIV = $defenseIV;
         $this->staminaIV = $staminaIV;
         $this->level = $level;
-        $this->perfection = 0;
+        $this->perfection = 0.0;
     }
 }

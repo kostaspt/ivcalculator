@@ -4,6 +4,8 @@ namespace IVCalculator;
 
 use BadFunctionCallException;
 use Illuminate\Support\Collection;
+use IVCalculator\Entities\Pokemon;
+use IVCalculator\Exceptions\PokemonNotFound;
 use IVCalculator\Traits\InteractsWithFiles;
 
 class Pokedex
@@ -25,16 +27,24 @@ class Pokedex
      *
      * @param $needle
      *
-     * @return mixed
+     * @return Pokemon
      */
     public function tryToFind($needle)
     {
-        if ($pokemon = $this->getByName($needle)) {
+        try {
+            $pokemon = $this->getByName($needle);
+
             return $pokemon;
+        } catch (PokemonNotFound $e) {
+            // Do nothing
         }
 
-        if ($pokemon = $this->getById($needle)) {
+        try {
+            $pokemon = $this->getById($needle);
+
             return $pokemon;
+        } catch (PokemonNotFound $e) {
+            // Do nothing
         }
     }
 
@@ -43,7 +53,7 @@ class Pokedex
      *
      * @param $id
      *
-     * @return mixed
+     * @return Pokemon
      */
     public function getById($id)
     {
@@ -55,7 +65,7 @@ class Pokedex
      *
      * @param $name
      *
-     * @return mixed
+     * @return Pokemon
      */
     public function getByName($name)
     {
@@ -68,18 +78,28 @@ class Pokedex
      * @param $key
      * @param $value
      *
-     * @throws BadFunctionCallException
+     * @throws PokemonNotFound
      *
-     * @return mixed
+     * @return Pokemon
      */
     private function getBy($key, $value)
     {
-        if (!in_array($key, ['id', 'name', 'stamina', 'attack', 'defense'])) {
+        if (! in_array($key, ['id', 'name', 'stamina', 'attack', 'defense'])) {
             throw new BadFunctionCallException();
         }
 
-        $pokemon = $this->pokemonData->where($key, $value)->first();
+        $data = $this->pokemonData->where($key, $value)->first();
 
-        return $pokemon;
+        if (is_null($data)) {
+            throw new PokemonNotFound();
+        }
+
+        return new Pokemon(
+            $data->id,
+            $data->name,
+            $data->stamina,
+            $data->attack,
+            $data->defense
+        );
     }
 }

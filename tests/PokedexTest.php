@@ -1,5 +1,7 @@
 <?php
 
+use IVCalculator\Entities\Pokemon;
+use IVCalculator\Exceptions\PokemonNotFound;
 use IVCalculator\Pokedex;
 
 class PokedexTest extends PHPUnit_Framework_TestCase
@@ -20,38 +22,38 @@ class PokedexTest extends PHPUnit_Framework_TestCase
     /** @test */
     public function it_gets_pokemon_by_name()
     {
-        $this->checkPokemonData(
-            (new Pokedex())->getByName('Zubat')
-        );
+        $pokemon = (new Pokedex())->getByName('Zubat');
+
+        $this->checkPokemonData($pokemon);
     }
 
     /** @test */
     public function it_does_not_get_invalid_pokemon_by_name()
     {
-        $this->assertNull(
-            (new Pokedex())->getByName('Mewthree')
-        );
+        $this->expectException(PokemonNotFound::class);
+
+        (new Pokedex())->getByName('Mewthree');
     }
 
     /** @test */
     public function it_gets_pokemon_by_id()
     {
-        $this->checkPokemonData(
-            (new Pokedex())->getById(41)
-        );
+        $pokemon = (new Pokedex())->getById(41);
+
+        $this->checkPokemonData($pokemon);
     }
 
     /** @test */
     public function it_does_not_get_invalid_pokemon_by_id()
     {
-        $this->assertNull(
-            (new Pokedex())->getById(999999)
-        );
+        $this->expectException(PokemonNotFound::class);
+
+        (new Pokedex())->getById(999999);
     }
 
-    private function checkPokemonData($data)
+    private function checkPokemonData(Pokemon $pokemon)
     {
-        $this->assertEquals(41, $data->id);
-        $this->assertEquals('Zubat', $data->name);
+        $this->assertEquals(41, $pokemon->id);
+        $this->assertEquals('Zubat', $pokemon->name);
     }
 }

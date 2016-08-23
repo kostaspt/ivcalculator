@@ -7,8 +7,8 @@ class IVCalculatorTest extends PHPUnit_Framework_TestCase
     /** @test */
     public function it_gets_possible_ivs()
     {
-        $potentialIVs = (new IVCalculator())->evaluate('Zubat', 342, 52, 3000);
+        $ivs = (new IVCalculator())->evaluate('Zubat', 342, 52, 3000);
 
-        $this->assertCount(27, $potentialIVs);
+        $this->assertCount(27, $ivs);
     }
 }

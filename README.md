@@ -8,6 +8,14 @@
 
 Find the possible IVs of a Pokémon.
 
+## Installation
+
+You can install this package via composer using:
+
+```bash
+composer require kostaspt/ivcalculator
+```
+
 ## Usage
 ```php
 <?php

@@ -9,7 +9,22 @@ class Evaluation
     /**
      * @var Collection
      */
-    public $ivs;
+    private $ivs;
+
+    /**
+     * @var float
+     */
+    private $max;
+
+    /**
+     * @var float
+     */
+    public $min;
+
+    /**
+     * @var float
+     */
+    public $avg;
 
     public function __construct(Collection $ivs)
     {
@@ -18,6 +33,42 @@ class Evaluation
 
             return $iv;
         })->sortBy('perfection');
+
+        $this->max = $this->ivs->first()->perfection;
+        $this->min = $this->ivs->last()->perfection;
+        $this->avg = round($this->ivs->average('perfection'), 2);
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getIVs()
+    {
+        return $this->ivs;
+    }
+
+    /**
+     * @return float
+     */
+    public function getMaxPerfection()
+    {
+        return $this->max;
+    }
+
+    /**
+     * @return float
+     */
+    public function getAveragePerfection()
+    {
+        return $this->avg;
+    }
+
+    /**
+     * @return float
+     */
+    public function getMinPerfection()
+    {
+        return $this->min;
     }
 
     /**

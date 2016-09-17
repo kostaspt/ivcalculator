@@ -2,7 +2,7 @@
 
 namespace IVCalculator;
 
-use IVCalculator\Entities\Evaluation;
+use Illuminate\Support\Collection;
 
 class IVCalculator
 {
@@ -13,12 +13,23 @@ class IVCalculator
      * @param $dustCost
      * @param bool $neverUpgraded
      *
-     * @return Evaluation
+     * @return Collection
      */
     public function evaluate($pokemonNameOrId, $cp, $hp, $dustCost, $neverUpgraded = false)
     {
         $pokemon = (new Pokedex())->tryToFind($pokemonNameOrId);
 
-        return (new Evaluator())->process($pokemon, $cp, $hp, $dustCost, $neverUpgraded)->ivs;
+        $evaluation = (new Evaluator())->process($pokemon, $cp, $hp, $dustCost, $neverUpgraded);
+
+        return collect([
+            'id' => $pokemon->id,
+            'name' => $pokemon->name,
+            'perfection' => collect([
+                'max' => $evaluation->getMaxPerfection(),
+                'min' => $evaluation->getMinPerfection(),
+                'average' => $evaluation->getAveragePerfection(),
+            ]),
+            'ivs' => $evaluation->getIVs(),
+        ]);
     }
 }

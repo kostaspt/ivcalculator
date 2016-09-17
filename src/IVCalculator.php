@@ -22,11 +22,11 @@ class IVCalculator
         $evaluation = (new Evaluator())->process($pokemon, $cp, $hp, $dustCost, $neverUpgraded);
 
         return collect([
-            'id' => $pokemon->id,
-            'name' => $pokemon->name,
+            'id'         => $pokemon->id,
+            'name'       => $pokemon->name,
             'perfection' => collect([
-                'max' => $evaluation->getMaxPerfection(),
-                'min' => $evaluation->getMinPerfection(),
+                'max'     => $evaluation->getMaxPerfection(),
+                'min'     => $evaluation->getMinPerfection(),
                 'average' => $evaluation->getAveragePerfection(),
             ]),
             'ivs' => $evaluation->getIVs(),

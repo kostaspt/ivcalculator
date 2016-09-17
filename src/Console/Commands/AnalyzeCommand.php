@@ -37,7 +37,7 @@ class AnalyzeCommand extends Command
         $output->writeln('=========================');
         $output->writeln(
             sprintf(
-                "%s (%.0f%%)",
+                '%s (%.0f%%)',
                 $results->get('name'),
                 $results->get('perfection')->get('average') * 100
             )
@@ -46,14 +46,14 @@ class AnalyzeCommand extends Command
 
         // IVs
         (new Table($output))
-            ->setHeaders(array('Perfection', 'Attack IV', 'Defense IV', 'Stamina IV', 'Level'))
-            ->setRows($results->get('ivs')->map(function($iv) {
+            ->setHeaders(['Perfection', 'Attack IV', 'Defense IV', 'Stamina IV', 'Level'])
+            ->setRows($results->get('ivs')->map(function ($iv) {
                 return [
                     sprintf('%.0f%%', $iv->perfection * 100),
                     $iv->attackIV,
                     $iv->defenseIV,
                     $iv->staminaIV,
-                    $iv->level
+                    $iv->level,
                 ];
             })->toArray())->render();
     }

@@ -2,6 +2,8 @@
 
 <?php
 
+require_once __DIR__ . '/../../../autoload.php';
+
 use IVCalculator\Console\Commands\AnalyzeCommand;
 use Symfony\Component\Console\Application;
 

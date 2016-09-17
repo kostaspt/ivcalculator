@@ -25,9 +25,9 @@ require_once 'vendor/autoload.php';
 $ivCalculator = new IVCalculator\IVCalculator();
 
 // Pokemon, CP, HP, Stardust needed for power up, Was powered up before?
-$ivs = $ivCalculator->evaluate('Dragonite', 3280, 149, 9000, false);
+$results = $ivCalculator->evaluate('Dragonite', 3280, 149, 9000, false);
 
-var_dump($ivs->toArray());
+var_dump($results->toArray());
 
 /*
     Outputs:
@@ -79,6 +79,32 @@ var_dump($ivs->toArray());
         ]
     ]
  */
+```
+
+The `$results` variable is a [Collection](https://laravel.com/docs/5.3/collections), so you can use it like this:
+
+```php
+echo $results->get('name');
+
+// Outputs: Dragonite
+```
+
+or
+ 
+```php
+echo $results->get('perfection')->get('average');
+
+// Outputs: 0.73
+```
+
+or
+
+```php
+$highestIV = $results->get('ivs')->last();
+
+echo $highestIV->perfection;
+
+// Outputs: 0.8
 ```
 
 ## Usage (Command Line)

@@ -13,14 +13,14 @@ Find the possible IVs of a Pokémon.
 You can install this package via composer using:
 
 ```bash
-composer require kostaspt/ivcalculator
+$ composer require kostaspt/ivcalculator
 ```
 
 ## Usage
 ```php
 <?php
 
-require('vendor/autoload.php');
+require_once 'vendor/autoload.php';
 
 $ivCalculator = new IVCalculator\IVCalculator();
 
@@ -32,46 +32,70 @@ var_dump($ivs->toArray());
 /*
     Outputs:
 
-    array:5 [
-        4 => {#219
-            +"attackIV": 13
-            +"defenseIV": 6
-            +"staminaIV": 9
-            +"level": 76
-            +"perfection": 0.62
-        }
-        1 => {#222
-            +"attackIV": 15
-            +"defenseIV": 8
-            +"staminaIV": 10
-            +"level": 74
-            +"perfection": 0.73
-        }
-        3 => {#220
-            +"attackIV": 9
-            +"defenseIV": 15
-            +"staminaIV": 10
-            +"level": 75
-            +"perfection": 0.75
-        }
-        2 => {#221
-            +"attackIV": 12
-            +"defenseIV": 12
-            +"staminaIV": 11
-            +"level": 74
-            +"perfection": 0.77
-        }
-        0 => {#223
-            +"attackIV": 15
-            +"defenseIV": 9
-            +"staminaIV": 12
-            +"level": 73
-            +"perfection": 0.8
-        }
+    array:4 [
+        "id" => 149
+        "name" => "Dragonite"
+        "perfection" => array:3 [
+            "max" => 0.62
+            "min" => 0.8
+            "average" => 0.73
+        ]
+        "ivs" => array:5 [
+            4 => IVCalculator\Entities\IV {#56
+                +attackIV: 13
+                +defenseIV: 6
+                +staminaIV: 9
+                +level: 76
+                +perfection: 0.62
+            }
+            1 => IVCalculator\Entities\IV {#59
+                +attackIV: 15
+                +defenseIV: 8
+                +staminaIV: 10
+                +level: 74
+                +perfection: 0.73
+            }
+            3 => IVCalculator\Entities\IV {#57
+                +attackIV: 9
+                +defenseIV: 15
+                +staminaIV: 10
+                +level: 75
+                +perfection: 0.75
+            }
+            2 => IVCalculator\Entities\IV {#58
+                +attackIV: 12
+                +defenseIV: 12
+                +staminaIV: 11
+                +level: 74
+                +perfection: 0.77
+            }
+            0 => IVCalculator\Entities\IV {#60
+                +attackIV: 15
+                +defenseIV: 9
+                +staminaIV: 12
+                +level: 73
+                +perfection: 0.8
+            }
+        ]
     ]
  */
-
 ```
+
+## Usage (Command Line)
+
+You can install this package via composer globally using:
+
+```bash
+$ composer require global kostaspt/ivcalculator
+```
+
+Then, just run:
+
+```bash
+$ ivcalculator analyze 'Dragonite' 3280 149 9000
+```
+
+![](http://i.imgur.com/pWDkZC3.jpg)
 
 ## Credit
 

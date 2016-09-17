@@ -8,9 +8,9 @@ class IVCalculatorTest extends PHPUnit_Framework_TestCase
     /** @test */
     public function it_gets_possible_ivs()
     {
-        $ivs = (new IVCalculator())->evaluate('Zubat', 342, 52, 3000);
+        $results = (new IVCalculator())->evaluate('Zubat', 342, 52, 3000);
 
-        $this->assertCount(27, $ivs);
+        $this->assertCount(27, $results->get('ivs'));
     }
 
     /** @test */
@@ -18,9 +18,9 @@ class IVCalculatorTest extends PHPUnit_Framework_TestCase
     {
         $this->expectException(PokemonNotFound::class);
 
-        $ivs = (new IVCalculator())->evaluate('Mewthree', 342, 52, 3000);
+        $results = (new IVCalculator())->evaluate('Mewthree', 342, 52, 3000);
 
-        $this->assertCount(27, $ivs);
+        $this->assertCount(27, $results->get('ivs'));
     }
 
     /** @test */
@@ -28,8 +28,8 @@ class IVCalculatorTest extends PHPUnit_Framework_TestCase
     {
         $this->expectException(PokemonNotFound::class);
 
-        $ivs = (new IVCalculator())->evaluate('Mewthree', 342, 52, 3000);
+        $results = (new IVCalculator())->evaluate('Mewthree', 342, 52, 3000);
 
-        $this->assertCount(27, $ivs);
+        $this->assertCount(27, $results->get('ivs'));
     }
 }
